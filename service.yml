@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    run: www
+  name: www
+spec:
+  sessionAffinityConfig:
+    clientIP:
+      timeoutSeconds: 1
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    run: www
+status:
+  loadBalancer: {}

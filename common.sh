@@ -24,11 +24,11 @@ echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https:/
 
 apt-get update
 
+echo "KUBELET_EXTRA_ARGS=--node-ip=$(hostname -I | awk '{print $2}')" | sudo tee /etc/default/kubelet
+
 apt-get install -y containerd kubeadm=1.18.17-00 kubelet=1.18.17-00
 
 sudo apt-mark hold kubelet kubeadm kubectl
-
-#echo "KUBELET_EXTRA_ARGS=--node-ip=$(hostname -I | awk '{print $2}')" | sudo tee /etc/default/kubelet
 
 #sudo kubeadm init --apiserver-advertise-address=192.168.57.2 --pod-network-cidr=10.128.0.0/16 --service-cidr=10.127.0.0/16 --service-dns-domain=contoso.internal
 #curl https://docs.projectcalico.org/manifests/calico.yaml -O
